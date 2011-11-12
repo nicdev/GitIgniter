@@ -76,16 +76,16 @@ GitIgniter Class
 <p>To authenticate a user against Github's OAuth create a controller to do the following.</p>
 
 <code>
-	$this->load->library('git_igniter');<br />
+	$this->load->library('gitigniter');<br />
 	<br />
-		$this->git_igniter->authorize_request();
+		$this->gitigniter->authorize_request();
 </code>
 
 <p>The user will be redirected to github.com for authorization, then redirected back to your site.</p>
 
 <code>
 
-	$token = $this->git_igniter->process_code(); //With a bit of magic $token will have the actual OAuth token (pro tip: store it for later use.)
+	$token = $this->gitigniter->process_code(); //With a bit of magic $token will have the actual OAuth token (pro tip: store it for later use.)
 </code>
 
 <!-- Get calls -->
@@ -95,9 +95,9 @@ GitIgniter Class
 <p>Some calls are made using HTTP GET for those follow this pattern</p>
 
 <code>
-	$this->git_igniter->get_call( 'user/followers' ); //Returns followers of the authenticated user
+	$this->gitigniter->get_call( 'user/followers' ); //Returns followers of the authenticated user
 	<br /><br />
-	$this->git_igniter->get_call( 'user/nicdev' ); //Returns information for user nicdev
+	$this->gitigniter->get_call( 'user/nicdev' ); //Returns information for user nicdev
 </code>
 
 <p>You can follow this pattern for any GET type call in the API.</p>
@@ -115,14 +115,14 @@ GitIgniter Class
 
 	//Pass the required parameters in an array in the form of 'parameter_name' => 'parameter value' <br />
 
-	$this->git_igniter->post_call( 'user/repos', $repo_options ); <br />
+	$this->gitigniter->post_call( 'user/repos', $repo_options ); <br />
 
 </code>
 
 
 <h2>Configuration Options</h2>
 
-<p>All configuration options are stored in a configuration file named git_igniter.php</p>
+<p>All configuration options are stored in a configuration file named gitigniter.php</p>
 
 
 <table cellpadding="0" cellspacing="1" border="0" style="width:100%" class="tableborder">
@@ -191,33 +191,33 @@ GitIgniter Class
 
 <h2>GitIgniter Function Reference</h2>
 
-<h3>$this->git_igniter->authorize_request()</h3>
+<h3>$this->gitigniter->authorize_request()</h3>
 <p>Redirect user to Github's authorization page.</p>
-<code>$this->git_igniter->authorize_request()</code>
+<code>$this->gitigniter->authorize_request()</code>
 
-<h3>$this->git_igniter->process_code()</h3>
+<h3>$this->gitigniter->process_code()</h3>
 <p>Accept Github's temporary code and request an OAuth token.</p>
-<code>$this->git_igniter->authorize_request()</code>
+<code>$this->gitigniter->authorize_request()</code>
 
-<h3>$this->git_igniter->store_token(<var>$token</var>, <var>$user_id</var>, <var>$session</var>, <var>$database</var>)</h3>
+<h3>$this->gitigniter->store_token(<var>$token</var>, <var>$user_id</var>, <var>$session</var>, <var>$database</var>)</h3>
 <p>Store the user's token to database and/or session based on configuration file options.</p>
 
 <code>//This will store to session (as 'gh_token') and to database as well<br />
-$this->git_igniter->store_token( <var>$token</var>, <var>$user_id</var>, TRUE, TRUE );
+$this->gitigniter->store_token( <var>$token</var>, <var>$user_id</var>, TRUE, TRUE );
 </code>
 
-<h3>$this->git_igniter->retrieve_token(<var>$user_id</var>)</h3>
+<h3>$this->gitigniter->retrieve_token(<var>$user_id</var>)</h3>
 <p>Retrieve the user's token from database. In the process it also stores it to the session as 'gh_token.'</p>
 
 <code>
-$this->git_igniter->retrieve_token( <var>$user_id</var> );
+$this->gitigniter->retrieve_token( <var>$user_id</var> );
 </code>
 
 
-<h3>$this->git_igniter->post_call(<var>$api_call</var>,<var>$api_options</var>)</h3>
+<h3>$this->gitigniter->post_call(<var>$api_call</var>,<var>$api_options</var>)</h3>
 <p>Make a call to the Github API using the POST method (see sample usage above.)'</p>
 
-<h3>$this->git_igniter->post_get(<var>$api_call</var>,<var>[$api_options]</var>)</h3>
+<h3>$this->gitigniter->post_get(<var>$api_call</var>,<var>[$api_options]</var>)</h3>
 <p>Make a call to the Github API using the GET method (see sample usage above.)'</p>
 
 
